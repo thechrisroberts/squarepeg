@@ -42,7 +42,7 @@ class MathnetController extends Controller
         return implode(',', $param);
     }
 
-    private function payload($param, string $value, string $squareClass): array
+    private function payload($param, $value, string $squareClass): array
     {
         return [
             'datetime' => now(),
