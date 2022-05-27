@@ -5,7 +5,7 @@ namespace Squarepeg\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * public int $limit
+ * public int $param
  * public string $type
  * public int $occurrences
  */
@@ -13,7 +13,7 @@ class Occurrence extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'limit',
+        'param',
         'type',
         'occurrences',
     ];

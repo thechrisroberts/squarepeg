@@ -13,7 +13,7 @@ class PeopleSquareController extends Controller
     public function sumSquares(PeopleSquareRequest $request)
     {
         $occurrence = Occurrence::firstOrNew([
-            'limit' => $request->people,
+            'param' => $request->people,
             'type' => SumSquaresPeopleAction::class,
         ], [ 'occurrences' => 0 ]);
 
@@ -28,7 +28,7 @@ class PeopleSquareController extends Controller
     public function squareSums(PeopleSquareRequest $request)
     {
         $occurrence = Occurrence::firstOrNew([
-            'limit' => $request->people,
+            'param' => $request->people,
             'type' => SquareSumsPeopleAction::class,
         ], [ 'occurrences' => 0 ]);
 
@@ -46,10 +46,10 @@ class PeopleSquareController extends Controller
             'datetime' => now(),
             'value' => $value,
             'number' => $people,
-            'occurrences' => Occurrence::where('limit', $people)->sum('occurrences'),
+            'occurrences' => Occurrence::where('param', $people)->sum('occurrences'),
             'type' => $squareClass,
             'occurrences_of_type' => Occurrence::where([
-                'limit' => $people,
+                'param' => $people,
                 'type' => $squareClass,
             ])->first()->occurrences,
         ];
