@@ -1,7 +1,7 @@
 <?php
 
-use Squarepeg\Http\Controllers\SquareController;
 use Illuminate\Support\Facades\Route;
+use Squarepeg\Http\Controllers\Api\SquareController;
 
 Route::controller(SquareController::class)->group(function () {
     Route::get('sum_squares', 'sumSquares');
