@@ -2,24 +2,16 @@
 
 namespace Squarepeg\Actions;
 
-use Squarepeg\Exceptions\InvalidLimitException;
-
-class SumSquaresAction
+class SumSquaresAction extends SquaresAction
 {
-    public int $limit;
-
-    public function __construct(int $limit)
+    public function handle(): int
     {
-        if ($limit < 1)
-        {
-            throw new InvalidLimitException();
+        $sum = 0;
+
+        for ($curN = 1; $curN <= $this->limit; $curN++) {
+            $sum += ($curN ** $this->power);
         }
 
-        $this->limit = $limit;
-    }
-
-    public function handle(): ?int
-    {
-        return null;
+        return $sum;
     }
 }
