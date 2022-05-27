@@ -8,26 +8,15 @@ use Illuminate\Validation\ValidationException;
 
 class PythagoreanTripleAction extends MathnetAction
 {
-    public function validate(): bool
-    {
-        $validator = Validator::make($this->params, [
-            'a' => 'required|integer|min:1',
-            'b' => 'required|integer|min:1',
-            'c' => 'required|integer|between:1,100',
-        ]);
-
-        if ($validator->fails()) {
-            throw new ValidationException($validator);
-        }
-
-        return true;
-    }
+    protected array $validationRules = [
+        'a' => 'required|integer|min:1',
+        'b' => 'required|integer|min:1',
+        'c' => 'required|integer|between:1,100',
+    ];
 
     public function handle()
     {
-        return $this->params['a'] ** 2 + $this->params['b'] ** 2 === $this->params['c'] ** 2
-            ? 'true'
-            : 'false';
+        return $this->params['a'] ** 2 + $this->params['b'] ** 2 === $this->params['c'] ** 2;
     }
 
     public function getParams(): array
