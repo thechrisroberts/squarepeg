@@ -41,3 +41,20 @@ Examples:
 | diff_squares       | limit = {int min:1, max:100} | Squares all sums and sums all squares from 1 to {limit} and returns the difference of the two results |
 | sum_people_squares | people = {csv string min:1, max:15} | Squares each individual in a list then returns the summed up squares.                                 |
 | square_people_sums | people = {csv string min:1, max:15} | Sums each individual in a list then returns the square of the sums.                        |
+| math/pythagorean_triple | a = {int min:1}, b = {int min:1}, c = {int min:1, max:100} | Returns a boolean evaluating whether the provided numbers form a Pythagorean triple. |
+
+## Extending
+
+Overall, adding a fleshed-out set of behavior is a matter of:
+* Define routes
+* Create relevant Action files
+* Create relevant Request files, including validation behavior
+* Create Controller
+
+If there is a need to add quick-and-dirty new behavior, this can be handled with just an Action file.
+* Endpoint needs to be `math/do_something_cool`
+* Action class would be `DoSomethingCoolAction.php`
+* Action class needs at least the methods `getParams()` and `handle()` along with a `validationRules` property
+  * `validationRules`: Validation rules to ensure data integrity. If more specific validation behavior is needed, the `validate()` method can be overridden.
+  * `getParams()`: Returns a key/value array of the parameters used for this action.
+  * `handle()`: Performs the desired behavior, returning a single value.
