@@ -41,7 +41,7 @@ class SquareController extends Controller
         // Retrieve or new up an Occurrence instance with the current
         // limit and action
         $occurrence = Occurrence::firstOrNew([
-            'limit' => $limit,
+            'param' => $limit,
             'type' => $squareClass,
         ], [ 'occurrences' => 0 ]);
 
@@ -65,10 +65,10 @@ class SquareController extends Controller
             'datetime' => now(),
             'value' => $value,
             'number' => $limit,
-            'occurrences' => Occurrence::where('limit', $limit)->sum('occurrences'),
+            'occurrences' => Occurrence::where('param', $limit)->sum('occurrences'),
             'type' => $squareClass,
             'occurrences_of_type' => Occurrence::where([
-                'limit' => $limit,
+                'param' => $limit,
                 'type' => $squareClass,
             ])->first()->occurrences,
         ];

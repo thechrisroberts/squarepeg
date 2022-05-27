@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('occurrences', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->integer('limit');
+            $table->string('param');
             $table->integer('occurrences');
         });
     }
