@@ -1,6 +1,6 @@
 <?php
 
-namespace Squarepeg\Http\Controllers;
+namespace Squarepeg\Http\Controllers\Api;
 
 use Illuminate\Routing\Controller;
 use Squarepeg\Actions\DiffSquaresAction;
