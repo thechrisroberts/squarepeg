@@ -1,64 +1,43 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Square Peg
+> "A square is exactly equal to the sum of its parts" - Albert Einstein (Allegedly)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Getting Started
 
-## About Laravel
+### Requirements
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. Functioning computer
+2. PHP 8.1
+3. [Paw](https://paw.cloud) (or other API testing tool, ie, [Postman](https://www.postman.com/product/api-client))
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Configuration
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+No configuration should be needed of the application itself. At most, you might wish to swap `https://` for `http://` in `APP_URL`
 
-## Learning Laravel
+### Database
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Once you have the application running in your development environment, execute the following command from the project folder:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* `php artisan db:seed`
+* `php artisan migrate`
 
-## Laravel Sponsors
+(Note: The application is configured to use SQLite. The `seed` action doesn't actually seed the database but creates the file for SQLite if it does not yet exist.)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Usage
 
-### Premium Partners
+This application was developed while using Paw for interacting with the API endpoints. Paw is not required, but a project file for Paw has been included under `_dev/Squarepeg.paw`.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+If you do use the included Paw file, you might need to adjust the Environment Variables configured in paw, setting `local/SERVER` to your local development url. It is currently set to `https://squarepeg.test`
 
-## Contributing
+## Endpoints
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Examples:
+* `https://squarepeg.test/sum_squares?limit=25`
+* `https://squarepeg.test/sum_people_squares?people=John,Jill,Jane`
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Endpoint           | Params                       | Description                                                                                           |
+|--------------------|------------------------------|-------------------------------------------------------------------------------------------------------|
+| sum_squares        | limit = {int min:1}          | Iterates from 1 to {limit}, squaring each value and returns the sum of all the squares                |
+| square_sums        | limit = {int min:1, max:100} | Sums all numbers from 1 to {limit} and returns the square of the result                               |
+| diff_squares       | limit = {int min:1, max:100} | Squares all sums and sums all squares from 1 to {limit} and returns the difference of the two results |
+| sum_people_squares | people = {csv string min:1, max:15} | Squares each individual in a list then returns the summed up squares.                                 |
+| square_people_sums | people = {csv string min:1, max:15} | Sums each individual in a list then returns the square of the sums.                        |

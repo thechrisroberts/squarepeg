@@ -1,19 +1,16 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Squarepeg\Http\Controllers\Api\SquareController;
+use Squarepeg\Http\Controllers\Api\PeopleSquareController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::controller(SquareController::class)->group(function () {
+    Route::get('sum_squares', 'sumSquares');
+    Route::get('square_sums', 'squareSums');
+    Route::get('diff_squares', 'diffSquares');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(PeopleSquareController::class)->group(function () {
+    Route::get('sum_people_squares', 'sumSquares');
+    Route::get('square_people_sums', 'squareSums');
 });

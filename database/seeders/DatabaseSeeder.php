@@ -14,11 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $dbPath = base_path('/database/squarepeg.sqlite');
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        // Create sqlite database, if needed
+        if (! file_exists($dbPath)) {
+            file_put_contents($dbPath, '');
+        }
     }
 }

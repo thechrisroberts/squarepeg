@@ -189,11 +189,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Squarepeg\Providers\AppServiceProvider::class,
+        Squarepeg\Providers\AuthServiceProvider::class,
+        // Squarepeg\Providers\BroadcastServiceProvider::class,
+        Squarepeg\Providers\EventServiceProvider::class,
+        Squarepeg\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -209,7 +209,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'ExampleClass' => Squarepeg\Example\ExampleClass::class,
     ])->toArray(),
 
 ];

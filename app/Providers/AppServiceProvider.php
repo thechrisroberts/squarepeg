@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Squarepeg\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
